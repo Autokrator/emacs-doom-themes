@@ -1,4 +1,4 @@
-;;; doom-one-vapor-theme.el --- inspired by Atom One Dark
+;;; doom-one-vapor-theme.el --- inspired by Atom One Dark -*- no-byte-compile: t; -*-
 (require 'doom-themes)
 
 ;;
@@ -26,7 +26,7 @@ legibility."
   "If non-nil, adds a 4px padding to the mode-line. Can be an integer to
 determine the exact padding."
   :group 'doom-one-vapor-theme
-  :type '(or integer boolean))
+  :type '(choice integer boolean))
 
 (defface font-lock-soft-face
   '((t :inherit default)) "Face to de-emphasize syntax aspects")
@@ -52,7 +52,7 @@ determine the exact padding."
    (base2      '("#202328" "#2e2e2e" "brightblack"  ))
    (base3      '("#23272e" "#262626" "brightblack"  ))
    (base4      '("#3f444a" "#3f3f3f" "brightblack"  ))
-   (base5      '("#5B6268" "#525252" "brightblack"  ))
+   (base5      '("#606469" "#525252" "brightblack"  ))
    (base6      '("#73797e" "#6b6b6b" "brightblack"  ))
    (base7      '("#9ca0a4" "#979797" "brightblack"  ))
    (base8      '("#DFDFDF" "#dfdfdf" "white"        ))
@@ -104,7 +104,7 @@ determine the exact padding."
     (when doom-one-vapor-padded-modeline
       (if (integerp doom-one-vapor-padded-modeline) doom-one-vapor-padded-modeline 4)))
 
-   (modeline-fg     nil)
+   (modeline-fg     fg)
    (modeline-fg-alt base5)
 
    (modeline-bg
@@ -198,7 +198,7 @@ determine the exact padding."
    ;; markdown-mode
    (markdown-markup-face :foreground base5)
    (markdown-header-face :inherit 'bold :foreground red)
-   (markdown-code-face :background (doom-lighten base3 0.05))
+   ((markdown-code-face &override) :background (doom-lighten base3 0.05))
 
    ;; org-mode
    (org-hide :foreground hidden)
@@ -210,20 +210,17 @@ determine the exact padding."
   ;; ()
   )
 
-(defun vapor-keyword-matcher (end)
-  "Search for SQl keywords within PHP strings."
+(defun vapor-punctuation-matcher (end)
+    "Match punctuation characters till END."
   (let (pos (case-fold-search t))
-    (while
-        (and (setq pos (re-search-forward
-                        "\\s." end t))
-                (not (null (nth 8 (syntax-ppss pos))))))
-    pos))
+    (while (and (setq pos (re-search-forward "\\s." end t))
+                (not (null (nth 8 (syntax-ppss pos)))))) pos))
 
 ;; --- syntax specific faces (general) -------
 (mapc
  (lambda (mode)
    ;; (font-lock-add-keywords mode '(("\\s." 0 'font-lock-punctuation-face)))
-   (font-lock-add-keywords mode '((vapor-keyword-matcher 0 'font-lock-punctuation-face)))
+   (font-lock-add-keywords mode '((vapor-punctuation-matcher 0 'font-lock-punctuation-face)))
    (font-lock-add-keywords mode '((";$" 0 'font-lock-soft-face t)))
    (font-lock-add-keywords mode '(("\\s\\$" 0 'font-lock-soft-face)))
    (font-lock-add-keywords mode '(("\\s\(\\|\\s\)\\|\\." 0 'font-lock-soft-face)))
