@@ -1,4 +1,4 @@
-;;; doom-palenight-theme.el --- inspired by Material-PaleNight
+;;; doom-palenight-theme.el --- inspired by Material-PaleNight -*- no-byte-compile: t; -*-
 (require 'doom-themes)
 
 ;;
@@ -10,7 +10,7 @@
   "If non-nil, adds a 4px padding to the mode-line.
 Can be an integer to determine the exact padding."
   :group 'doom-palenight-theme
-  :type '(or integer boolean))
+  :type '(choice integer boolean))
 
 ;;
 (def-doom-theme doom-palenight
@@ -107,9 +107,9 @@ Can be an integer to determine the exact padding."
    (Man-underline :inherit 'underline :foreground blue)
 
    ;; org-mode
-   (org-block                    :background base2)
-   (org-block-background         :background base2)
-   (org-block-begin-line         :foreground comments :background base2)
+   ((org-block &override) :background base2)
+   ((org-block-background &override) :background base2)
+   ((org-block-begin-line &override) :background base2)
 
    ;; --- plugin faces -------------------
    ;; css-mode / scss-mode

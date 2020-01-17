@@ -1,4 +1,4 @@
-;;; doom-tomorrow-night-theme.el
+;;; doom-tomorrow-night-theme.el -*- no-byte-compile: t; -*-
 (require 'doom-themes)
 
 (defgroup doom-tomorrow-night-theme nil
@@ -9,7 +9,7 @@
   "If non-nil, adds a 4px padding to the mode-line. Can be an integer to
 determine the exact padding."
   :group 'doom-tomorrow-night-theme
-  :type '(or integer boolean))
+  :type '(choice integer boolean))
 
 (def-doom-theme doom-tomorrow-night
   "A theme based off of Chris Kempson's Tomorrow Dark."
@@ -44,7 +44,7 @@ determine the exact padding."
 
    ;; face categories
    (highlight      blue)
-   (vertical-bar   `("#161616" ,@base0))
+   (vertical-bar   base0)
    (selection      `(,(car (doom-lighten bg 0.1)) ,@(cdr base4)))
    (builtin        blue)
    (comments       grey)

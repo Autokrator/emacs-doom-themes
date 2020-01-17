@@ -1,4 +1,4 @@
-;; doom-sourcerer-theme.el --- a more Sourcerer version of doom-one
+;; doom-sourcerer-theme.el --- a more Sourcerer version of doom-one -*- no-byte-compile: t; -*-
 ;;; Commentary:
 (require 'doom-themes)
 ;;; Code:
@@ -27,7 +27,7 @@ Enhancing their legibility."
   "If non-nil, adds a 4px padding to the mode-line.
 Can be an integer to determine the exact padding."
   :group 'doom-sourcerer-theme
-  :type '(or integer boolean))
+  :type '(choice integer boolean))
 
 
 ;;

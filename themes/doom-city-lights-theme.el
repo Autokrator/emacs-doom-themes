@@ -1,4 +1,4 @@
-;;; doom-city-lights-theme.el --- inspired by Atom City Lights
+;;; doom-city-lights-theme.el --- inspired by Atom City Lights -*- no-byte-compile: t; -*-
 (require 'doom-themes)
 
 ;;
@@ -26,7 +26,7 @@ legibility."
   "If non-nil, adds a 4px padding to the mode-line. Can be an integer to
 determine the exact padding."
   :group 'doom-city-lights-theme
-  :type '(or integer boolean))
+  :type '(choice integer boolean))
 
 ;;
 (def-doom-theme doom-city-lights
@@ -145,6 +145,10 @@ determine the exact padding."
    (css-property             :foreground green)
    (css-selector             :foreground blue)
 
+   ;; magit-mode
+   (magit-diff-hunk-heading-highlight :foreground fg :background base4 :weight 'bold)
+   (magit-diff-hunk-heading :foreground fg-alt :background base3 :weight 'normal)
+
    ;; markdown-mode
    (markdown-markup-face :foreground base5)
    (markdown-header-face :inherit 'bold :foreground red)
@@ -164,9 +168,9 @@ determine the exact padding."
    ((outline-8 &override) :foreground (doom-darken green 0.4))
 
    ;; org-mode
+   ((org-block &override) :background base2)
+   ((org-block-begin-line &override) :background base2)
    (org-hide :foreground hidden)
-   (org-block :background base2)
-   (org-block-begin-line :background base2 :foreground comments)
    (solaire-org-hide-face :foreground hidden))
 
 

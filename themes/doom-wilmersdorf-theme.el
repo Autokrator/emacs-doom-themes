@@ -1,4 +1,4 @@
-;;; doom-wilmersdorf-theme.el --- inspired by Atom City Lights
+;;; doom-wilmersdorf-theme.el --- inspired by Atom City Lights -*- no-byte-compile: t; -*-
 (require 'doom-themes)
 
 ;;
@@ -10,7 +10,7 @@
   "If non-nil, adds a 4px padding to the mode-line. Can be an integer to
 determine the exact padding."
   :group 'doom-wilmersdorf-theme
-  :type '(or integer boolean))
+  :type '(choice integer boolean))
 
 ;;
 (def-doom-theme doom-wilmersdorf
@@ -143,9 +143,9 @@ determine the exact padding."
    ((outline-8 &override) :foreground (doom-darken green 0.4))
 
    ;; org-mode
+   ((org-block &override) :background base2)
+   ((org-block-begin-line &override) :background base2)
    (org-hide :foreground hidden)
-   (org-block :background base2)
-   (org-block-begin-line :background base2 :foreground comments)
    (solaire-org-hide-face :foreground hidden)
 
    ;; tooltip

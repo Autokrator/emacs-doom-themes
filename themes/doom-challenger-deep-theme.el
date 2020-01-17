@@ -1,4 +1,4 @@
-;;; doom-challenger-deep-theme.el --- inspired by VIM Challenger Deep
+;;; doom-challenger-deep-theme.el --- inspired by VIM Challenger Deep -*- no-byte-compile: t; -*-
 (require 'doom-themes)
 
 ;;
@@ -26,7 +26,7 @@ legibility."
   "If non-nil, adds a 4px padding to the mode-line. Can be an integer to
 determine the exact padding."
   :group 'doom-challenger-deep-theme
-  :type '(or integer boolean))
+  :type '(choice integer boolean))
 
 ;;
 (def-doom-theme doom-challenger-deep
@@ -129,6 +129,7 @@ determine the exact padding."
     :box (if -modeline-pad `(:line-width ,-modeline-pad :color ,modeline-bg-inactive)))
    (mode-line-emphasis
     :foreground (if -modeline-bright base8 highlight))
+   (header-line :inherit 'mode-line :background "#23214b")
 
    (solaire-mode-line-face
     :inherit 'mode-line
@@ -148,15 +149,15 @@ determine the exact padding."
    ;; markdown-mode
    (markdown-markup-face :foreground base5)
    (markdown-header-face :inherit 'bold :foreground red)
-   (markdown-code-face :background (doom-lighten base3 0.05))
+   ((markdown-code-face &override) :background (doom-lighten base3 0.05))
 
    ;; outline (affects org-mode)
    ((outline-1 &override) :foreground blue :background nil)
 
    ;; org-mode
+   ((org-block &override) :background base1)
+   ((org-block-begin-line &override) :background base1 :foreground comments)
    (org-hide :foreground hidden)
-   (org-block :background base1)
-   (org-block-begin-line :background base1 :foreground comments)
    (solaire-org-hide-face :foreground hidden)
 
    ;; tooltip
