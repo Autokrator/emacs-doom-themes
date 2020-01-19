@@ -225,7 +225,7 @@ determine the exact padding."
    (font-lock-add-keywords mode '(("\\s\\$" 0 'font-lock-soft-face)))
    (font-lock-add-keywords mode '(("\\s\(\\|\\s\)\\|\\." 0 'font-lock-soft-face)))
    )
- '(c-mode c++-mode emacs-lisp-mode python-mode js-mode js-jsx-mode js2-mode rjsx-mode typescript-mode))
+ '(c-mode c++-mode emacs-lisp-mode python-mode js-mode js-jsx-mode js2-mode rjsx-mode typescript-mode clojure-mode))
 
 ;; --- syntax specific faces (c/c++) ---------
 (mapc
